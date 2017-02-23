@@ -99,6 +99,7 @@ for DIR in $HOME/${ARCH}bin \
 	/opt/apache-maven-3.1.1/bin \
 	/home/y/libexec/ant/bin \
 	/usr/local/bin \
+	/usr/local/mysql/bin \
 	/usr/X11R6/bin \
 	/home/jadestar/bak/homes/bin/ \
 	/homes/mbeirne/scripts
@@ -155,6 +156,7 @@ BLOCKSIZE=1k; export BLOCKSIZE
 
 ### uncomment to select an alternate timezone (/etc/localtime is default)
 # TZ=/usr/share/zoneinfo/US/Central; export TZ
+TZ='America/Los_Angeles'; export TZ
 
 ### NEWS Configuration
 RNINIT="$HOME/.rninit"; export RNINIT
@@ -197,9 +199,8 @@ JAVA_HOME="/usr/local/java/jdk1.7.0_45";export JAVA_HOME
 case "$SHELL" in
     */bash) set -o emacs; set -o notify; set -o ignoreeof
 	    command_oriented_history=1
-	    #if [ -w /sbin/init ]; then PSCH="#"; else PSCH="$"; fi
-	    #export PSCH
-    	    PS1="\h \A \w \\$ " ENV="$HOME/.shellrc"
+    	    PS1='\h \A \w \$ ' 
+	    ENV="$HOME/.shellrc"
 	    export ENV PS1
 	    [ -f "$ENV" ] && . "$ENV"
             ;;
@@ -237,4 +238,4 @@ umask 022
 if [ -f $HOME/.profile.locale ]; then
     . $HOME/.profile.locale
 fi
-TZ='America/Los_Angeles'; export TZ
+#lognew
