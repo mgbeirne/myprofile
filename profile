@@ -246,7 +246,7 @@ umask 022
 # put ssh-agent info in a file, so that it can be sourced in a new tmux window
 if ssh-add -l >>/dev/null 2>&1
 then
-env |grep SSH_AUTH |sed -e 's/^/export /' >ssh-agent
+env |grep SSH_AUTH |sed -e 's/^/export /' >~/ssh-agent
 else source ~/ssh-agent
 fi
 
