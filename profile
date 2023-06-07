@@ -214,7 +214,7 @@ $PSCH '
     */zsh)  set -o emacs; set -o notify; set -o ignoreeof
             command_oriented_history=1
             setopt PROMPT_SUBST
-            PROMPT='%(?.%F{green)ok.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
+            PROMPT='%(?.%F{green)✓.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
             ENV="$HOME/.shellrc"
             export ENV PS1
             [ -f "$ENV" ] && . "$ENV"
