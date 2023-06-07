@@ -211,6 +211,14 @@ $PSCH '
 	    ENV="$HOME/.shellrc"
 	    export PSCH ENV PS1
             ;;
+    */zsh)  set -o emacs; set -o notify; set -o ignoreeof
+            command_oriented_history=1
+            setopt PROMPT_SUBST
+            PROMPT='%(?.%F{green)ok.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
+            ENV="$HOME/.shellrc"
+            export ENV PS1
+            [ -f "$ENV" ] && . "$ENV"
+            ;;
     *)      set -I
 	    PS1="${HOSTNAME}\$ "
 	    ENV="$HOME/.shellrc"
@@ -234,6 +242,13 @@ export HISTFILE HISTFILESIZE HISTSIZE FCEDIT
 ### umask sets a mask for the default file permissions,
 ### ``umask 002'' is less restrictive
 umask 022
+
+# put ssh-agent info in a file, so that it can be sourced in a new tmux window
+if ssh-add -l >>/dev/null 2>&1
+then
+env |grep SSH_AUTH |sed -e 's/^/export /' >ssh-agent
+else source ~/ssh-agent
+fi
 
 if [ -f $HOME/.profile.locale ]; then
     . $HOME/.profile.locale
